@@ -31,12 +31,72 @@ function operator(operate, ...numb){
 let storData =[];
 let dataToNum;
    
-// this function will be called on numbers button click and it will take in the button value and store it in the stordata array.  
+/* this function will be called on numbers button click and it will take in the button value and store it in the stordata array.  */
 function buttonClick(value){
     storData.push(value);
     dataToNum = Number(storData.join(""));
 }
 
 
+
+const screen = document.querySelector("#screen");
+const zero = document.querySelector("#zero");
+const one = document.querySelector("#one");
+const two = document.querySelector("#two");
+const three = document.querySelector("#three");
+const four = document.querySelector("#four");
+const five = document.querySelector("#five");
+const six = document.querySelector("#six");
+const seven = document.querySelector("#seven");
+const eight = document.querySelector("#eight");
+const nine = document.querySelector("#nine");
+const equalTo = document.querySelector("#equalTo");
+const addButton = document.querySelector("#addButton");
+const multiplyButton = document.querySelector("#multiplyButton");
+const divideButton = document.querySelector("#divideButton");
+const subButton = document.querySelector("#SubButton");
+
+
+
+one.addEventListener("click", ()=>{ 
+    screen.textContent += 1;
+    return(buttonClick(1));
+});
+two.addEventListener("click", ()=>{ 
+    screen.textContent += 2;
+    return(buttonClick(2));
+});
+three.addEventListener("click", ()=>{ 
+    screen.textContent += 3;
+    return(buttonClick(3));
+});
+four.addEventListener("click", ()=>{ 
+    screen.textContent += 4;
+    return(buttonClick(4));
+});
+five.addEventListener("click", ()=>{ 
+    screen.textContent += 5;
+    return(buttonClick(5));
+});
+six.addEventListener("click", ()=>{ 
+    screen.textContent += 6;
+    return(buttonClick(6));
+});
+seven.addEventListener("click", ()=>{ 
+    screen.textContent += 7;
+    return(buttonClick(7));
+});
+eight.addEventListener("click", ()=>{ 
+    screen.textContent += 8;
+    return(buttonClick(8));
+});
+nine.addEventListener("click", ()=>{ 
+    screen.textContent += 9;
+    return(buttonClick(9));
+});
+zero.addEventListener("click", ()=>{ 
+    screen.textContent += 0;
+    return(buttonClick(0));
+});
 
 

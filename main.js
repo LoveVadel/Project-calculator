@@ -18,3 +18,13 @@ function divide(num1, num2){
     return num1 / num2;
 }
 
+
+let firstNumber;
+let calOperator;
+let secondNumber;
+
+//this function takes an operator and 2 numbers and then calls one of the above functions on the numbers
+function operator(operate, ...numb){
+    return operate(numb[0], numb[1])
+}
+

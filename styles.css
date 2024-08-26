@@ -1,0 +1,42 @@
+body{
+    background-color: rgb(230, 226, 226);
+    margin: 0;
+}
+
+#container{
+    background-color: black;
+    width: 300px;
+    margin: 20px auto;
+    padding: 5px 10px;
+    text-align: center;
+}
+/*Styling for all buttons */
+button{
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+.lineFive button{
+    width: 135px;
+}
+
+#addButton, #subButton, #devideButton, #multiplyButton{
+    background-color: rgb(8, 143, 143);
+    color: white;
+} 
+
+#resetButton{
+    background-color: red;
+    color: white;
+}
+
+#equalTo{
+    background-color: rgb(7, 217, 217);
+    color: white;
+}
+
+

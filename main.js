@@ -38,7 +38,7 @@ function buttonClick(value){
 }
 
 
-
+// create a variable for all button in index.html
 const screen = document.querySelector("#screen");
 const zero = document.querySelector("#zero");
 const one = document.querySelector("#one");
@@ -54,10 +54,10 @@ const equalTo = document.querySelector("#equalTo");
 const addButton = document.querySelector("#addButton");
 const multiplyButton = document.querySelector("#multiplyButton");
 const divideButton = document.querySelector("#divideButton");
-const subButton = document.querySelector("#SubButton");
+const subButton = document.querySelector("#subButton");
 
 
-
+//Add eventListener to all numbers button with the call back function "buttonClick"
 one.addEventListener("click", ()=>{ 
     screen.textContent += 1;
     return(buttonClick(1));
@@ -98,5 +98,48 @@ zero.addEventListener("click", ()=>{
     screen.textContent += 0;
     return(buttonClick(0));
 });
+
+
+
+//Add eventListener to operator button with a function that updates the ui screen, add all user input to data storage, and calls the operators functions.
+
+let dataStoring = {};
+
+addButton.addEventListener("click", ()=>{ 
+    screen.textContent += "+"
+    dataStoring.firstnum = dataToNum;
+    dataStoring.addOperator = add;
+    storData = [];  
+       
+})
+
+subButton.addEventListener("click", ()=>{ 
+    screen.textContent += "-"
+    dataStoring.firstnum = dataToNum;
+    dataStoring.addOperator = subtract;
+    storData = [];       
+})
+
+divideButton.addEventListener("click", ()=>{ 
+    screen.textContent += "/"
+    dataStoring.firstnum = dataToNum;
+    dataStoring.addOperator = divide;
+    storData = [];       
+})
+
+multiplyButton.addEventListener("click", ()=>{ 
+    screen.textContent += "*"
+    dataStoring.firstnum = dataToNum;
+    dataStoring.addOperator = multiply;
+    storData = [];       
+})
+
+
+//Add eventListener to equal button
+equalTo.addEventListener("click", ()=>{
+    dataStoring.secondNum = dataToNum;
+    let calculate = operator(dataStoring.addOperator, dataStoring.firstnum, dataStoring.secondNum);
+    screen.textContent = calculate
+})
 
 

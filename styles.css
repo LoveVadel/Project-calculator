@@ -24,7 +24,7 @@ button{
     width: 135px;
 }
 
-#addButton, #subButton, #devideButton, #multiplyButton{
+#addButton, #subButton, #divideButton, #multiplyButton{
     background-color: rgb(8, 143, 143);
     color: white;
 } 

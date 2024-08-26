@@ -28,3 +28,15 @@ function operator(operate, ...numb){
     return operate(numb[0], numb[1])
 }
 
+let storData =[];
+let dataToNum;
+   
+// this function will be called on numbers button click and it will take in the button value and store it in the stordata array.  
+function buttonClick(value){
+    storData.push(value);
+    dataToNum = Number(storData.join(""));
+}
+
+
+
+

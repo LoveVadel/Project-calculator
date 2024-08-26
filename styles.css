@@ -39,4 +39,15 @@ button{
     color: white;
 }
 
+.screenContain{
+    height: 100px;
+    background-color: rgb(25, 22, 22);
+    margin: 10px 0;
+    color: white;
+    text-align: right;
+}
+#screen{
+    font-size: 30px;
+}
+
 

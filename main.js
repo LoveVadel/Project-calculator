@@ -16,6 +16,8 @@ const addButton = document.querySelector("#addButton");
 const multiplyButton = document.querySelector("#multiplyButton");
 const divideButton = document.querySelector("#divideButton");
 const subButton = document.querySelector("#subButton");
+const clearButton = document.querySelector("#clearButton");
+const resetButton = document.querySelector("#resetButton");
 
 //Create a function that takes in two numbers and adds them together.
 function add(num1, num2){
@@ -106,9 +108,134 @@ one.addEventListener("click", ()=>{
   zero.addEventListener("click", ()=>{
     return buttonClick("0");
   })
+//add a condition to divide button so that a user cannot start input by . dot 
   dot.addEventListener("click", ()=>{
+    if(firstNumber === ""){
+        firstNumber = "";
+        calOperator = ""
+        secondNumber = ""
+        return firstNumber
+    }
     return buttonClick(".");
   })
+
+//this function does the same thing as the EqualTo function with a little modification, but this will be added to the operator buttons so that when an operator is pressed again without the = , it will compute the answer...
+function operatorsEqualTo(value){
+    
+    let calculate = operate(calOperator, Number(firstNumber), Number(secondNumber));
+    if(calculate === undefined){
+      firstNumber = "";
+    }
+    else{
+
+        if(Number.isInteger(calculate)=== true || calculate.toString().length <= 5){
+            firstNumber = calculate;
+            secondNumber = ""
+            calOperator = value;
+            screen.textContent = firstNumber + calOperator;
+            }
+
+        else{
+            firstNumber = calculate.toFixed(7);
+            secondNumber = ""
+            calOperator = value;
+            screen.textContent = firstNumber + calOperator;
+            }
+
+    //firstNumber = calculate;}
+    //secondNumber = ""
+    //calOperator = value;
+    //screen.textContent = firstNumber + calOperator;
+        }
+  }
+
+//Add eventListener to operator button with a function that updates the ui screen
+  addButton.addEventListener("click", ()=>{
+    if (firstNumber.length === 0){
+        firstNumber = "";
+        calOperator = "";
+        secondNumber = ""
+    }
+    else{
+        if(secondNumber.length !== 0){
+        return operatorsEqualTo("+")
+        }
+        calOperator = "+";
+        screen.textContent = firstNumber + calOperator;
+    }
+  })
+
+  multiplyButton.addEventListener("click", ()=>{
+    if (firstNumber.length === 0){
+        firstNumber = "";
+        calOperator = "";
+        secondNumber = ""
+    }
+    else{
+        if(secondNumber.length !== 0){
+            return operatorsEqualTo("*")
+        }
+        calOperator = "*";
+        screen.textContent = firstNumber + calOperator;
+    }
+  })
+
+  subButton.addEventListener("click", ()=>{
+    if (firstNumber.length === 0){
+        firstNumber = "";
+        calOperator = "";
+        secondNumber = ""
+    }
+    else{
+        if(secondNumber.length !== 0){
+            return operatorsEqualTo("-")
+        }
+        calOperator = "-";
+        screen.textContent = firstNumber + calOperator;
+    }
+  })
+
+  divideButton.addEventListener("click", ()=>{
+    if (firstNumber.length === 0){
+        firstNumber = "";
+        calOperator = "";
+        secondNumber = ""
+    }
+    else{
+        if(secondNumber.length !== 0){
+            return operatorsEqualTo("/")
+        }
+        calOperator = "/";
+        screen.textContent = firstNumber + calOperator;
+    }
+  })
+
+//Add eventListener to equal button and a condition which round up the answer to 7 decimal place if answer not an integer.
+  equalTo.addEventListener("click", ()=>{
+    let calculate = operate(calOperator, Number(firstNumber), Number(secondNumber));
+    if(calculate === undefined){
+      firstNumber = "";
+    }
+    else{
+        if(Number.isInteger(calculate)=== true || calculate.toString().length <= 5){
+            firstNumber = calculate;
+            secondNumber = ""
+            screen.textContent = firstNumber;
+            }
+
+        else{
+            firstNumber = calculate.toFixed(7);
+            secondNumber = ""
+            screen.textContent = firstNumber;
+            }
+        }
+  })  
+
+resetButton.addEventListener("click", ()=>{
+    firstNumber = "";
+    screen.textContent = "";
+    calOperator = "";
+})
 
 /* this function takes an operator and 2 numbers and then calls one of the above functions on the numbers
 function operator(operate, ...numb){

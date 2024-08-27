@@ -1,3 +1,21 @@
+// create a variable for all button in index.html
+const screen = document.querySelector("#screen");
+const zero = document.querySelector("#zero");
+const one = document.querySelector("#one");
+const two = document.querySelector("#two");
+const three = document.querySelector("#three");
+const four = document.querySelector("#four");
+const five = document.querySelector("#five");
+const six = document.querySelector("#six");
+const seven = document.querySelector("#seven");
+const eight = document.querySelector("#eight");
+const nine = document.querySelector("#nine");
+const equalTo = document.querySelector("#equalTo");
+const addButton = document.querySelector("#addButton");
+const multiplyButton = document.querySelector("#multiplyButton");
+const divideButton = document.querySelector("#divideButton");
+const subButton = document.querySelector("#subButton");
+
 //Create a function that takes in two numbers and adds them together.
 function add(num1, num2){
     return num1 + num2;
@@ -19,44 +37,61 @@ function divide(num1, num2){
 }
 
 
-let firstNumber;
+let firstNumber = "";
 let calOperator;
-let secondNumber;
+let secondNumber = "";
 
-//this function takes an operator and 2 numbers and then calls one of the above functions on the numbers
-function operator(operate, ...numb){
-    return operate(numb[0], numb[1])
+//Below function takes in an operator and 2 numbers and then calls one of the above functions on the numbers
+
+function operate (operator, ...numbs){
+    if(operator === "+"){
+     let addNum = add(numbs[0], numbs[1]);
+     return addNum;
+    }
+    else if(operator === "-"){
+      let subNum = subtract(numbs[0], numbs[1]);
+      return subNum;
+     }
+     else if(operator === "/"){
+      let divideNum = divide(numbs[0], numbs[1]);
+      return divideNum;
+     }
+     else if(operator === "*"){
+      let multiplyNum = multiply(numbs[0], numbs[1]);
+      return multiplyNum;
+     }
+    
+  }
+// this function will be added to the click event of the buttons, 
+  function buttonClick(value){
+    if(calOperator === "+" || calOperator === "*" || calOperator === "/" || calOperator === "-"){
+      secondNumber += value;
+      screen.textContent += value;
+    }
+    else{
+    firstNumber += value
+    screen.textContent += value;
+    }
 }
+
+/* this function takes an operator and 2 numbers and then calls one of the above functions on the numbers
+function operator(operate, ...numb){
+    return operate(numb[0], numb[1])}
 
 let storData =[];
 let dataToNum;
    
-/* this function will be called on numbers button click and it will take in the button value and store it in the stordata array.  */
+ //this function will be called on numbers button click and it will take in the button value and store it in the storeDatData array.
 function buttonClick(value){
     storData.push(value);
     dataToNum = Number(storData.join(""));
 }
+*/
 
 
-// create a variable for all button in index.html
-const screen = document.querySelector("#screen");
-const zero = document.querySelector("#zero");
-const one = document.querySelector("#one");
-const two = document.querySelector("#two");
-const three = document.querySelector("#three");
-const four = document.querySelector("#four");
-const five = document.querySelector("#five");
-const six = document.querySelector("#six");
-const seven = document.querySelector("#seven");
-const eight = document.querySelector("#eight");
-const nine = document.querySelector("#nine");
-const equalTo = document.querySelector("#equalTo");
-const addButton = document.querySelector("#addButton");
-const multiplyButton = document.querySelector("#multiplyButton");
-const divideButton = document.querySelector("#divideButton");
-const subButton = document.querySelector("#subButton");
 
 
+/*
 //Add eventListener to all numbers button with the call back function "buttonClick"
 one.addEventListener("click", ()=>{ 
     screen.textContent += 1;
@@ -143,3 +178,4 @@ equalTo.addEventListener("click", ()=>{
 })
 
 
+*/

@@ -10,6 +10,7 @@ const six = document.querySelector("#six");
 const seven = document.querySelector("#seven");
 const eight = document.querySelector("#eight");
 const nine = document.querySelector("#nine");
+const dot = document.querySelector("#dot");
 const equalTo = document.querySelector("#equalTo");
 const addButton = document.querySelector("#addButton");
 const multiplyButton = document.querySelector("#multiplyButton");
@@ -73,6 +74,41 @@ function operate (operator, ...numbs){
     screen.textContent += value;
     }
 }
+
+//Add eventListener to all numbers button with the call back function "buttonClick"
+one.addEventListener("click", ()=>{
+    return buttonClick("1");
+  })
+  two.addEventListener("click", ()=>{
+    return buttonClick("2");
+  })
+  three.addEventListener("click", ()=>{
+    return buttonClick("3");
+  })
+  four.addEventListener("click", ()=>{
+    return buttonClick("4");
+  })
+  five.addEventListener("click", ()=>{
+    return buttonClick("5");
+  })
+  six.addEventListener("click", ()=>{
+    return buttonClick("6");
+  })
+  seven.addEventListener("click", ()=>{
+    return buttonClick("7");
+  })
+  eight.addEventListener("click", ()=>{
+    return buttonClick("8");
+  })
+  nine.addEventListener("click", ()=>{
+    return buttonClick("9");
+  })
+  zero.addEventListener("click", ()=>{
+    return buttonClick("0");
+  })
+  dot.addEventListener("click", ()=>{
+    return buttonClick(".");
+  })
 
 /* this function takes an operator and 2 numbers and then calls one of the above functions on the numbers
 function operator(operate, ...numb){

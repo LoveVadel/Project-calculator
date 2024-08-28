@@ -41,7 +41,7 @@ function divide(num1, num2){
 
 
 let firstNumber = "";
-let calOperator;
+let calOperator = "";
 let secondNumber = "";
 
 //Below function takes in an operator and 2 numbers and then calls one of the above functions on the numbers
@@ -108,7 +108,7 @@ one.addEventListener("click", ()=>{
   zero.addEventListener("click", ()=>{
     return buttonClick("0");
   })
-//add a condition to divide button so that a user cannot start input by . dot 
+//add a condition to dot button so that a user cannot start input by . dot 
   dot.addEventListener("click", ()=>{
     if(firstNumber === ""){
         firstNumber = "";
@@ -121,14 +121,13 @@ one.addEventListener("click", ()=>{
 
 //this function does the same thing as the EqualTo function with a little modification, but this will be added to the operator buttons so that when an operator is pressed again without the = , it will compute the answer...
 function operatorsEqualTo(value){
-    
     let calculate = operate(calOperator, Number(firstNumber), Number(secondNumber));
     if(calculate === undefined){
       firstNumber = "";
     }
     else{
 
-        if(Number.isInteger(calculate)=== true || calculate.toString().length <= 5){
+        if(Number.isInteger(calculate)=== true || calculate.toString().length <= 10){
             firstNumber = calculate;
             secondNumber = ""
             calOperator = value;
@@ -136,16 +135,12 @@ function operatorsEqualTo(value){
             }
 
         else{
-            firstNumber = calculate.toFixed(7);
+            firstNumber = calculate.toFixed(9);
             secondNumber = ""
             calOperator = value;
             screen.textContent = firstNumber + calOperator;
             }
 
-    //firstNumber = calculate;}
-    //secondNumber = ""
-    //calOperator = value;
-    //screen.textContent = firstNumber + calOperator;
         }
   }
 
@@ -210,21 +205,22 @@ function operatorsEqualTo(value){
     }
   })
 
-//Add eventListener to equal button and a condition which round up the answer to 7 decimal place if answer not an integer.
+//Add eventListener to equal to button and a condition which round up the answer to 10 decimal place if answer not an integer or length > 10.
   equalTo.addEventListener("click", ()=>{
     let calculate = operate(calOperator, Number(firstNumber), Number(secondNumber));
     if(calculate === undefined){
       firstNumber = "";
     }
     else{
-        if(Number.isInteger(calculate)=== true || calculate.toString().length <= 5){
-            firstNumber = calculate;
+        if(Number.isInteger(calculate)=== true || calculate.toString().length <= 10){
+            firstNumber = calculate.toString();
             secondNumber = ""
             screen.textContent = firstNumber;
+            calOperator = "";
             }
 
         else{
-            firstNumber = calculate.toFixed(7);
+            firstNumber = calculate.toFixed(9);
             secondNumber = ""
             screen.textContent = firstNumber;
             }
@@ -237,108 +233,24 @@ resetButton.addEventListener("click", ()=>{
     calOperator = "";
 })
 
-/* this function takes an operator and 2 numbers and then calls one of the above functions on the numbers
-function operator(operate, ...numb){
-    return operate(numb[0], numb[1])}
 
-let storData =[];
-let dataToNum;
-   
- //this function will be called on numbers button click and it will take in the button value and store it in the storeDatData array.
-function buttonClick(value){
-    storData.push(value);
-    dataToNum = Number(storData.join(""));
+
+//Clear/backspace button.. 
+function backSpace(){
+    if(secondNumber.length !== 0){
+        secondNumber = secondNumber.slice(0, -1)
+        screen.textContent = screen.textContent.slice(0, -1)
+        return secondNumber;
+    }
+    else if(calOperator.length !== 0){
+        calOperator = calOperator.slice(0, -1)
+        screen.textContent = screen.textContent.slice(0, -1)
+    }
+    else if( firstNumber.length !== 0){
+        firstNumber = firstNumber.toString().slice(0, -1)
+        screen.textContent = screen.textContent.slice(0, -1)
+        
+    }
 }
-*/
 
-
-
-
-/*
-//Add eventListener to all numbers button with the call back function "buttonClick"
-one.addEventListener("click", ()=>{ 
-    screen.textContent += 1;
-    return(buttonClick(1));
-});
-two.addEventListener("click", ()=>{ 
-    screen.textContent += 2;
-    return(buttonClick(2));
-});
-three.addEventListener("click", ()=>{ 
-    screen.textContent += 3;
-    return(buttonClick(3));
-});
-four.addEventListener("click", ()=>{ 
-    screen.textContent += 4;
-    return(buttonClick(4));
-});
-five.addEventListener("click", ()=>{ 
-    screen.textContent += 5;
-    return(buttonClick(5));
-});
-six.addEventListener("click", ()=>{ 
-    screen.textContent += 6;
-    return(buttonClick(6));
-});
-seven.addEventListener("click", ()=>{ 
-    screen.textContent += 7;
-    return(buttonClick(7));
-});
-eight.addEventListener("click", ()=>{ 
-    screen.textContent += 8;
-    return(buttonClick(8));
-});
-nine.addEventListener("click", ()=>{ 
-    screen.textContent += 9;
-    return(buttonClick(9));
-});
-zero.addEventListener("click", ()=>{ 
-    screen.textContent += 0;
-    return(buttonClick(0));
-});
-
-
-
-//Add eventListener to operator button with a function that updates the ui screen, add all user input to data storage, and calls the operators functions.
-
-let dataStoring = {};
-
-addButton.addEventListener("click", ()=>{ 
-    screen.textContent += "+"
-    dataStoring.firstnum = dataToNum;
-    dataStoring.addOperator = add;
-    storData = [];  
-       
-})
-
-subButton.addEventListener("click", ()=>{ 
-    screen.textContent += "-"
-    dataStoring.firstnum = dataToNum;
-    dataStoring.addOperator = subtract;
-    storData = [];       
-})
-
-divideButton.addEventListener("click", ()=>{ 
-    screen.textContent += "/"
-    dataStoring.firstnum = dataToNum;
-    dataStoring.addOperator = divide;
-    storData = [];       
-})
-
-multiplyButton.addEventListener("click", ()=>{ 
-    screen.textContent += "*"
-    dataStoring.firstnum = dataToNum;
-    dataStoring.addOperator = multiply;
-    storData = [];       
-})
-
-
-//Add eventListener to equal button
-equalTo.addEventListener("click", ()=>{
-    dataStoring.secondNum = dataToNum;
-    let calculate = operator(dataStoring.addOperator, dataStoring.firstnum, dataStoring.secondNum);
-    screen.textContent = calculate
-})
-
-
-*/
+clearButton.addEventListener("click", backSpace)

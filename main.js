@@ -44,6 +44,9 @@ let firstNumber = "";
 let calOperator = "";
 let secondNumber = "";
 
+//i will use this just for resetting the to default so that when i click equal and click a new number after, it starts as new.
+let newReset = "";
+
 //Below function takes in an operator and 2 numbers and then calls one of the above functions on the numbers
 
 function operate (operator, ...numbs){
@@ -79,38 +82,119 @@ function operate (operator, ...numbs){
 
 //Add eventListener to all numbers button with the call back function "buttonClick"
 one.addEventListener("click", ()=>{
-    return buttonClick("1");
-  })
-  two.addEventListener("click", ()=>{
-    return buttonClick("2");
-  })
-  three.addEventListener("click", ()=>{
-    return buttonClick("3");
-  })
-  four.addEventListener("click", ()=>{
-    return buttonClick("4");
-  })
-  five.addEventListener("click", ()=>{
-    return buttonClick("5");
-  })
-  six.addEventListener("click", ()=>{
-    return buttonClick("6");
-  })
-  seven.addEventListener("click", ()=>{
-    return buttonClick("7");
-  })
-  eight.addEventListener("click", ()=>{
-    return buttonClick("8");
-  })
-  nine.addEventListener("click", ()=>{
-    return buttonClick("9");
-  })
-  zero.addEventListener("click", ()=>{
-    if(firstNumber[0] === "0" && firstNumber.length === 1){
-        // zero button click wont execute
+    if(newReset === "newReset"){
+        //this condition is added so that when a user do some calculation and get the result on the screen, clicking a new number will reset everything thus not allowing a new number to continue from the previous answers. this statement will be added to all number button
+        firstNumber = "1";
+        newReset = "";
+        screen.textContent = firstNumber
     }
     else{
-    return buttonClick("0");
+    return buttonClick("1");
+    }
+  })
+
+  two.addEventListener("click", ()=>{
+    if(newReset === "newReset"){
+        firstNumber = "2";
+        newReset = "";
+        screen.textContent = firstNumber
+    }
+    else{
+    return buttonClick("2");
+    }
+  })
+
+  three.addEventListener("click", ()=>{
+    if(newReset === "newReset"){
+        firstNumber = "3";
+        newReset = "";
+        screen.textContent = firstNumber
+    }
+    else{
+    return buttonClick("3");
+    }
+  })
+
+  four.addEventListener("click", ()=>{
+    if(newReset === "newReset"){
+        firstNumber = "4";
+        newReset = "";
+        screen.textContent = firstNumber
+    }
+    else{
+    return buttonClick("4");
+    }
+  })
+
+  five.addEventListener("click", ()=>{
+    if(newReset === "newReset"){
+        firstNumber = "5";
+        newReset = "";
+        screen.textContent = firstNumber
+    }
+    else{
+    return buttonClick("5");
+    }
+  })
+
+  six.addEventListener("click", ()=>{
+    if(newReset === "newReset"){
+        firstNumber = "6";
+        newReset = "";
+        screen.textContent = firstNumber
+    }
+    else{
+    return buttonClick("6");
+    }
+  })
+
+  seven.addEventListener("click", ()=>{
+    if(newReset === "newReset"){
+        firstNumber = "7";
+        newReset = "";
+        screen.textContent = firstNumber
+    }
+    else{
+    return buttonClick("7");
+    }
+  })
+
+  eight.addEventListener("click", ()=>{
+    if(newReset === "newReset"){
+        firstNumber = "8";
+        newReset = "";
+        screen.textContent = firstNumber
+    }
+    else{
+    return buttonClick("8");
+    }
+  })
+
+  nine.addEventListener("click", ()=>{
+    if(newReset === "newReset"){
+        firstNumber = "9";
+        newReset = "";
+        screen.textContent = firstNumber
+    }
+    else{
+    return buttonClick("9");
+    }
+  })
+
+  zero.addEventListener("click", ()=>{
+    if(newReset === "newReset"){
+        firstNumber = "0";
+        newReset = "";
+        screen.textContent = firstNumber
+    }
+    else{
+    
+        if(firstNumber[0] === "0" && firstNumber.length === 1){
+            // zero button click wont execute
+        }
+        else{
+        return buttonClick("0");
+    }
     }
   })
 
@@ -157,6 +241,7 @@ function operatorsEqualTo(value){
 
 //Add eventListener to operator button with a function that updates the ui screen
   addButton.addEventListener("click", ()=>{
+    newReset = "";
     if (firstNumber.length === 0){
         firstNumber = "";
         calOperator = "";
@@ -172,6 +257,7 @@ function operatorsEqualTo(value){
   })
 
   multiplyButton.addEventListener("click", ()=>{
+    newReset = "";
     if (firstNumber.length === 0){
         firstNumber = "";
         calOperator = "";
@@ -187,6 +273,7 @@ function operatorsEqualTo(value){
   })
 
   subButton.addEventListener("click", ()=>{
+    newReset = "";
     if (firstNumber.length === 0){
         firstNumber = "";
         calOperator = "";
@@ -202,6 +289,7 @@ function operatorsEqualTo(value){
   })
 
   divideButton.addEventListener("click", ()=>{
+    newReset = "";
     if (firstNumber.length === 0){
         firstNumber = "";
         calOperator = "";
@@ -218,6 +306,7 @@ function operatorsEqualTo(value){
 
 //Add eventListener to equal to button and a condition which round up the answer to 10 decimal place if answer not an integer or length > 10.
   equalTo.addEventListener("click", ()=>{
+    newReset = "newReset"
     let calculate = operate(calOperator, Number(firstNumber), Number(secondNumber));
     if(calculate === undefined){
       firstNumber = firstNumber;
@@ -238,18 +327,25 @@ function operatorsEqualTo(value){
         }
   })  
 
+// resets everything to default.
 resetButton.addEventListener("click", ()=>{
     firstNumber = "";
     secondNumber = "";
     screen.textContent = "";
     calOperator = "";
+    newReset = "";
 })
-
-
 
 //Clear/backspace button.. 
 function backSpace(){
-    if(secondNumber.length !== 0){
+    if(newReset === "newReset"){
+        firstNumber = "";
+        secondNumber = "";
+        screen.textContent = "";
+        calOperator = "";
+        newReset = "";
+    }
+    else if(secondNumber.length !== 0){
         secondNumber = secondNumber.slice(0, -1)
         screen.textContent = screen.textContent.slice(0, -1)
         return secondNumber;

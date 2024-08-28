@@ -106,8 +106,14 @@ one.addEventListener("click", ()=>{
     return buttonClick("9");
   })
   zero.addEventListener("click", ()=>{
+    if(firstNumber[0] === "0" && firstNumber.length === 1){
+        // zero button click wont execute
+    }
+    else{
     return buttonClick("0");
+    }
   })
+
 //add a condition to dot button so that a user cannot start input by . dot 
   dot.addEventListener("click", ()=>{
     if(firstNumber === ""){
@@ -214,7 +220,7 @@ function operatorsEqualTo(value){
   equalTo.addEventListener("click", ()=>{
     let calculate = operate(calOperator, Number(firstNumber), Number(secondNumber));
     if(calculate === undefined){
-      firstNumber = "";
+      firstNumber = firstNumber;
     }
     else{
         if(Number.isInteger(calculate)=== true || calculate.toString().length <= 10){
@@ -234,6 +240,7 @@ function operatorsEqualTo(value){
 
 resetButton.addEventListener("click", ()=>{
     firstNumber = "";
+    secondNumber = "";
     screen.textContent = "";
     calOperator = "";
 })

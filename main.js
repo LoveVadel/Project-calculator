@@ -111,12 +111,17 @@ one.addEventListener("click", ()=>{
 //add a condition to dot button so that a user cannot start input by . dot 
   dot.addEventListener("click", ()=>{
     if(firstNumber === ""){
-        firstNumber = "";
-        calOperator = ""
-        secondNumber = ""
-        return firstNumber
+        // dot button click wont execute
     }
+    else if (firstNumber.includes(".") && secondNumber.length === 0){
+        // dot button click wont execute
+    }
+    else if(secondNumber.includes(".")){
+        // dot button click wont execute
+    }
+    else{
     return buttonClick(".");
+    }
   })
 
 //this function does the same thing as the EqualTo function with a little modification, but this will be added to the operator buttons so that when an operator is pressed again without the = , it will compute the answer...
